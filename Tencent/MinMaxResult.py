@@ -5,14 +5,21 @@ if __name__ == "__main__":
     array = []
     for i in range(num):
         array.append(int(strList[i]))
-    result = dict()
+    minResult = abs(array[0] - array[1])
+    maxResult = 0
+    mincount = 0
+    maxcount = 0
     for i in range(num-1):
         for j in range(i+1, num):
             temp = abs(array[i] - array[j])
-            if temp in result:
-                result[temp] += 1
-            else:
-                result[temp] = 1
-    minResult = min(result.keys())
-    maxResult = max(result.keys())
-    print(str(result[minResult]) + " " + str(result[maxResult]))
+            if minResult > temp:
+                minResult = temp
+                mincount = 1
+            elif minResult == temp:
+                mincount += 1
+            elif maxResult < temp:
+                maxResult = temp
+                maxcount = 1
+            elif maxResult == temp:
+                maxcount += 1
+    print(str(mincount) + " " + str(maxcount))
